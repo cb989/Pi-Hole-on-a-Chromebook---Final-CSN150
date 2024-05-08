@@ -1,2 +1,3 @@
 # Pi-Hole-on-a-Chromebook---Final-CSN150
-Hello if you're reading this Prof. This is the documentation of my final project. Hope you enjoy!
+## What was the purpose of this project:
+For anyone that knows me well, they know that I have three passions. Tech, video games, and repurposing old hardware! What better chance to repurpose my old stinky chromebook than now? Feast your eyes upon an amazing project called "chrultrabook" that i found while scrolling through youtube one night. What chrultrabook allows you to do, is to reflash the original INCREDIBLY limting uefi firmware normally present on chromeOS devices, and replace it with another firmware called coreboot. This custom firmware allows you to install any operating system under the sun
