@@ -18,5 +18,7 @@ Pi-Hole on a chromebook
 ### Here are the steps I took in order to flash coreboot on my chromebook, install Debian, run Docker, and finally, install Pi-Hole!
 1. Following the chrultrabook documentation I refrenced earlier, I first looked to find the exact version of chromebook that I had: The Samsung Chromebook 3.
 2. I then had to enable developer mode by booting the chromebook up into recovery mode, hitting Ctrl + D, and then pressing enter. 
-3. Now that I knew which version of chromebook I had, I researched how to disable write protection on my specific chromebook model. Following this [guide](https://maxwyb.github.io/linux/2016/11/05/chromebook-write-protection.html) I linked up above, Thankfully, I only had to open the laptop up, and simply remove the screw that enabled the write protection. Here is a picture of that in action:
-4. 
+3. Now that I knew which version of chromebook I had, I researched how to disable write protection on my specific chromebook model. Following this [guide](https://maxwyb.github.io/linux/2016/11/05/chromebook-write-protection.html) I linked up above, I opened the laptop up, and simply removed the screw that enabled the write protection. Here is a picture of the location of that screw that I took myself:
+4. Now, lets flash the firmware. I turned on the chromebook and entered the VT-2 command shell on the chromebook by tapping Ctrl + Alt + F2 on the keyboard. Copied and pasted this command to run the firmware installation script:
+   * cd; curl -LO mrchromebox.tech/firmware-util.sh && sudo bash firmware-util.sh
+5. Finally coreboot has been flashed onto the chromebook and I can get onto installig Debian!
