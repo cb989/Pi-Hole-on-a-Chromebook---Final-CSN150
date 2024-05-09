@@ -10,11 +10,12 @@ Pi-Hole on a chromebook
 1. The chromebook itself
 2. Sandisk USB Flash drive (that I had laying around)
 3. [USB to Ethernet Adapter](https://www.amazon.com/USB-Ethernet-Adapter-Gigabit-Switch/dp/B09GRL3VCN/ref=sr_1_4?crid=30CWKI378JWHR&dib=eyJ2IjoiMSJ9.QCN-6MlAIK3XarnN3gP4fLbrMEAm52ww8ZoRwiIWI4saSq457syxb6VuKhrTKz_w0lEv1nZBh5tP8HAJrBxvmuV4a5rTTm7YsEr4yF2r0Q2M-anX1NXQPOUMzdsk8lwA_sdDtz0tliGR87IyIPwLnO-WjX5a1VDSIgU1OH3eHJDzFNLU-EVxinkDl53n8UjhiqIJeFYUdnsAFtKyXVQaPYXRkkEidw0SfwnKNAMRKMk.rghjz-2dPzFUxpbcGNH-HBJudSpe3xKmQbk7CUXLKj4&dib_tag=se&keywords=usb%2Bto%2Bethernet%2Badapter&qid=1715213440&sprefix=usb%2Bto%2Bthern%2Caps%2C157&sr=8-4&th=1)
-### Links to Documentation that I used:
+### Links to Documentation that I used in order of use:
 1. [Chrultrabook Docs](https://docs.chrultrabook.com/)
 2. [Disable Write-Protect Screw on Samsung Chromebook 3 CELES](https://maxwyb.github.io/linux/2016/11/05/chromebook-write-protection.html)
-3. [Debian 12 Docker Installation](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
-4. [Running Pi-Hole in Docker](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker)
+3. [How to setup static IP on Debian linux](https://www.cyberciti.biz/faq/add-configure-set-up-static-ip-address-on-debianlinux/)
+4. [Debian 12 Docker Installation](https://docs.docker.com/engine/install/debian/#install-using-the-repository)
+5. [Running Pi-Hole in Docker](https://github.com/pi-hole/docker-pi-hole/#running-pi-hole-docker)
 ### Here are the steps I took in order to flash coreboot on my chromebook, install Debian, run Docker, and finally, install Pi-Hole!
 1. Following the chrultrabook documentation I refrenced earlier, I first looked to find the exact version of chromebook that I had: The Samsung Chromebook 3.
 2. I then had to enable developer mode by booting the chromebook up into recovery mode, hitting Ctrl + D, and then pressing enter. 
@@ -22,3 +23,13 @@ Pi-Hole on a chromebook
 4. Now, lets flash the firmware. I turned on the chromebook and entered the VT-2 command shell on the chromebook by tapping Ctrl + Alt + F2 on the keyboard. Copied and pasted this command to run the firmware installation script:
    * cd; curl -LO mrchromebox.tech/firmware-util.sh && sudo bash firmware-util.sh
 5. Finally coreboot has been flashed onto the chromebook and I can get onto installig Debian! I downloaded a Debian ISO from their official download mirror, burned the ISO to my USB flash drive, and I went on to change the boot order and install the operating system.
+6. After finishing the instalation, I had to first make my chromebooks ip address static. To do this I simply had to edit the file named interfaces located at /etc/networks, change the interface from dhcp to static, and add my preferred IP address, subnet mask, and dns servers there.
+7. Now it was time to install docker. To do that I copied the commands located on the docker [Debian 12 Installation Guide](https://docs.docker.com/engine/install/debian/#install-using-the-repository) to get my docker instalation guide ready for Pi-hole.
+8. Finally, lets startup a container to install Pi-Hole! All I had to do now is copy Pi-Hole's docker compose.yml onto my chromebook by using ssh on my main laptop, changing the defualt password located in the text file, saving the edit on vim by using the command :w, and finally, running the command
+   * docker compose up -d
+## Finally, I have Pi-Hole installed on a strange device!
+Using my favorite web browser, all i had to do was paste the the IP address of the chromebook, login as admin and the beauty of pi-hole was right underneath my finger tips! 
+### Issues Faced:
+Surprisingly, I had faced zero issues throughout this entire process. While it did take me a while to complete this entire installation process (around a full day), I got it up and running with no errors thanks to the fantastic documentation I refrenced earlier in my links section.
+
+## Thank you for reading this Prof. Have a great day!
